@@ -1,3 +1,4 @@
+#!/bin/bash
 mkdir -p chromePackage
 cd chromePackage
 cp ../build/src/out/Default/* . || true
