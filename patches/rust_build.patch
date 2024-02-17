@@ -1,0 +1,64 @@
+@@ -96,7 +96,7 @@
+ 
+ CLANG_SCRIPTS_DIR = os.path.join(CHROMIUM_DIR, 'tools', 'clang', 'scripts')
+ 
+-RUST_GIT_URL = ('https://chromium.9oo91esource.qjz9zk/external/' +
++RUST_GIT_URL = ('https://' +
+                 'github.com/rust-lang/rust')
+ 
+ RUST_SRC_DIR = os.path.join(THIRD_PARTY_DIR, 'rust-src')
+@@ -235,12 +235,13 @@
+ 
+     # Pull the stage0 JSON to find the package intended to be used to
+     # build this version of the Rust compiler.
++    #https://raw.githubusercontent.com/rust-lang/rust/9784a14859aeffa2a3819566ccc77a28f9ae03be/src/stage0.json
+     STAGE0_JSON_URL = (
+-        'https://chromium.9oo91esource.qjz9zk/external/github.com/'
+-        'rust-lang/rust/+/{GIT_HASH}/src/stage0.json?format=TEXT')
+-    base64_text = urllib.request.urlopen(
++        'https://raw.githubusercontent.com/'
++        'rust-lang/rust/{GIT_HASH}/src/stage0.json')
++    text = urllib.request.urlopen(
+         STAGE0_JSON_URL.format(GIT_HASH=rust_git_hash)).read().decode("utf-8")
+-    stage0 = json.loads(base64.b64decode(base64_text))
++    stage0 = json.loads(text)
+ 
+     # The stage0 JSON contains the path to all tarballs it uses binaries from.
+     for k in stage0['checksums_sha256'].keys():
+@@ -689,11 +690,11 @@
+         return 1
+ 
+     debian_sysroot = None
+-    if sys.platform.startswith('linux') and not args.sync_for_gnrt:
++    #if sys.platform.startswith('linux') and not args.sync_for_gnrt:
+         # Fetch sysroot we build rustc against. This ensures a minimum supported
+         # host (not Chromium target). Since the rustc linux package is for
+         # x86_64 only, that is the sole needed sysroot.
+-        debian_sysroot = DownloadDebianSysroot('amd64')
++    #    debian_sysroot = DownloadDebianSysroot('amd64')
+ 
+     # Require zlib compression.
+     if sys.platform == 'win32':
+@@ -710,10 +711,10 @@
+     # TODO(crbug.com/1271215): OpenSSL is somehow already present on the Windows
+     # builder, but we should change to using a package from 3pp when it is
+     # available.
+-    if (sys.platform != 'win32' and not args.build_mac_arm
+-            and not args.sync_for_gnrt):
++    #if (sys.platform != 'win32' and not args.build_mac_arm
++    #        and not args.sync_for_gnrt):
+         # Building cargo depends on OpenSSL.
+-        AddOpenSSLToEnv(args.build_mac_arm)
++    #    AddOpenSSLToEnv(args.build_mac_arm)
+ 
+     xpy = XPy(zlib_path, libxml2_dirs, args.build_mac_arm, debian_sysroot,
+               args.verbose)
+@@ -784,7 +785,7 @@
+      target_llvm_dir) = BuildLLVMLibraries(args.skip_llvm_build,
+                                            args.build_mac_arm)
+ 
+-    AddCMakeToPath()
++    #AddCMakeToPath()
+ 
+     # Set up config.toml in Rust source tree.
+     xpy.configure(args.build_mac_arm, x86_64_llvm_config, aarch64_llvm_config)
