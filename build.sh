@@ -24,7 +24,8 @@ cd build/src
 echo "7----------------------------------------------------------------"
 patch -u tools/clang/scripts/build.py -i ../../buildScript/ungoogled-chromium-debian-main/patches/clang_build.patch 
 tools/clang/scripts/build.py --host-cc /usr/bin/clang --host-cxx /usr/bin/clang++ --use-system-cmake --with-ml-inliner-model='' --without-android --without-fuchsia  
-tools/rust/scripts/build.py
+patch -u tools/rust/build_rust.py -i ../../buildScript/ungoogled-chromium-debian-main/patches/rust_build.patch
+tools/rust/build_rust.py
 echo "8----------------------------------------------------------------"
 pushd third_party/node
 ./update_node_binaries
