@@ -22,7 +22,7 @@ mkdir -p build/src/out/Default
 cp buildScript/ungoogled-chromium-debian-main/args.gn build/src/out/Default/args.gn
 cd build/src
 echo "7----------------------------------------------------------------"
-patch -u tools/clang/scripts/build.py -i ../../buildScript/patches/clang_build.patch 
+patch -u tools/clang/scripts/build.py -i ../../buildScript/ungoogled-chromium-debian-main/patches/clang_build.patch 
 tools/clang/scripts/build.py --host-cc /usr/bin/clang --host-cxx /usr/bin/clang++ --use-system-cmake --with-ml-inliner-model='' --without-android --without-fuchsia  
 tools/rust/scripts/build.py
 echo "8----------------------------------------------------------------"
