@@ -63,7 +63,7 @@
  
    if sys.platform == 'win32':
      AddGnuWinToPath()
-@@ -1175,17 +1176,17 @@
+@@ -1175,20 +1176,20 @@
    runtimes_triples_args = {}
  
    if sys.platform.startswith('linux'):
@@ -91,7 +91,11 @@
 +    #}
      runtimes_triples_args['x86_64-unknown-linux-gnu'] = {
          "args": [
-             'CMAKE_SYSROOT=%s' % sysroot_amd64,
+-            'CMAKE_SYSROOT=%s' % sysroot_amd64,
++            #'CMAKE_SYSROOT=%s' % sysroot_amd64,
+         ],
+         "profile": True,
+         "sanitizers": True,
 @@ -1200,28 +1201,28 @@
      # results on
      # https://chromium-review.9oo91esource.qjz9zk/c/chromium/src/+/3702739/4
