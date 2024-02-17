@@ -22,7 +22,7 @@ mkdir -p build/src/out/Default
 cp buildScript/ungoogled-chromium-debian-main/args.gn build/src/out/Default/args.gn
 cd build/src
 echo "7----------------------------------------------------------------"
-tools/clang/scripts/build.py
+tools/clang/scripts/build.py --host-cc /usr/bin/clang --host-cxx /usr/bin/clang++ --use-system-cmake --with-ml-inliner-model='' --without-android --without-fuchsia  
 tools/rust/scripts/build.py
 echo "8----------------------------------------------------------------"
 pushd third_party/node

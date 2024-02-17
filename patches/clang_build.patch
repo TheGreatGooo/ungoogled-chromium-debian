@@ -1,0 +1,111 @@
+49c49
+< LLVM_GIT_URL = ('https://chromium.9oo91esource.qjz9zk/external/' +
+---
+> LLVM_GIT_URL = ('https://' +
+325c325,326
+<   DownloadAndUnpack(CDS_URL + '/tools/' + zip_name, dirs.unzip_dir)
+---
+>   DownloadAndUnpack('https://github.com/GNOME/libxml2/archive/refs/tags/v2.9.12.tar.gz', dirs.unzip_dir)
+>   os.rename(f"{dirs.unzip_dir}/libxml2-2.9.12",f"{dirs.unzip_dir}/libxml2-v2.9.12")
+440c441
+<   DownloadAndUnpack(CDS_URL + '/tools/' + zip_name, dirs.unzip_dir)
+---
+>   DownloadAndUnpack('https://github.com/facebook/zstd/releases/download/v1.5.5/zstd-1.5.5.tar.gz', dirs.unzip_dir)
+811c812
+<   targets = 'AArch64;ARM;LoongArch;Mips;PowerPC;RISCV;SystemZ;WebAssembly;X86'
+---
+>   targets = 'X86'
+894,898c895,899
+<   if sys.platform.startswith('linux'):
+<     sysroot_amd64 = DownloadDebianSysroot('amd64')
+<     sysroot_i386 = DownloadDebianSysroot('i386')
+<     sysroot_arm = DownloadDebianSysroot('arm')
+<     sysroot_arm64 = DownloadDebianSysroot('arm64')
+---
+>   #if sys.platform.startswith('linux'):
+>   #  sysroot_amd64 = DownloadDebianSysroot('amd64')
+>   #  sysroot_i386 = DownloadDebianSysroot('i386')
+>   #  sysroot_arm = DownloadDebianSysroot('arm')
+>   #  sysroot_arm64 = DownloadDebianSysroot('arm64')
+901,903c902,904
+<     if platform.machine() == 'aarch64':
+<       base_cmake_args.append('-DCMAKE_SYSROOT=' + sysroot_arm64)
+<     else:
+---
+>   #  if platform.machine() == 'aarch64':
+>   #    base_cmake_args.append('-DCMAKE_SYSROOT=' + sysroot_arm64)
+>   #  else:
+905c906
+<       base_cmake_args.append('-DCMAKE_SYSROOT=' + sysroot_amd64)
+---
+>   #    base_cmake_args.append('-DCMAKE_SYSROOT=' + sysroot_amd64)
+1178,1188c1179,1189
+<     runtimes_triples_args['i386-unknown-linux-gnu'] = {
+<         "args": [
+<             'CMAKE_SYSROOT=%s' % sysroot_i386,
+<             # TODO(https://crbug.com/1374690): pass proper flags to i386 tests so they compile correctly
+<             'LLVM_INCLUDE_TESTS=OFF',
+<         ],
+<         "profile":
+<         True,
+<         "sanitizers":
+<         True,
+<     }
+---
+>     #runtimes_triples_args['i386-unknown-linux-gnu'] = {
+>     #    "args": [
+>     #        'CMAKE_SYSROOT=%s' % sysroot_i386,
+>     #        # TODO(https://crbug.com/1374690): pass proper flags to i386 tests so they compile correctly
+>     #        'LLVM_INCLUDE_TESTS=OFF',
+>     #    ],
+>     #    "profile":
+>     #    True,
+>     #    "sanitizers":
+>     #    True,
+>     #}
+1203,1224c1204,1225
+<     runtimes_triples_args['armv7-unknown-linux-gnueabihf'] = {
+<         "args": [
+<             'CMAKE_SYSROOT=%s' % sysroot_arm,
+<             # Can't run tests on x86 host.
+<             'LLVM_INCLUDE_TESTS=OFF',
+<         ],
+<         "profile":
+<         True,
+<         "sanitizers":
+<         True,
+<     }
+<     runtimes_triples_args['aarch64-unknown-linux-gnu'] = {
+<         "args": [
+<             'CMAKE_SYSROOT=%s' % sysroot_arm64,
+<             # Can't run tests on x86 host.
+<             'LLVM_INCLUDE_TESTS=OFF',
+<         ],
+<         "profile":
+<         True,
+<         "sanitizers":
+<         True,
+<     }
+---
+>     #runtimes_triples_args['armv7-unknown-linux-gnueabihf'] = {
+>     #    "args": [
+>     #        'CMAKE_SYSROOT=%s' % sysroot_arm,
+>     #        # Can't run tests on x86 host.
+>     #        'LLVM_INCLUDE_TESTS=OFF',
+>     #    ],
+>     #    "profile":
+>     #    True,
+>     #    "sanitizers":
+>     #    True,
+>     #}
+>     #runtimes_triples_args['aarch64-unknown-linux-gnu'] = {
+>     #    "args": [
+>     #        'CMAKE_SYSROOT=%s' % sysroot_arm64,
+>     #        # Can't run tests on x86 host.
+>     #        'LLVM_INCLUDE_TESTS=OFF',
+>     #    ],
+>     #    "profile":
+>     #    True,
+>     #    "sanitizers":
+>     #    True,
+>     #}
