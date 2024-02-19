@@ -26,6 +26,7 @@ patch -u tools/clang/scripts/build.py -i ../../buildScript/ungoogled-chromium-de
 tools/clang/scripts/build.py --host-cc /usr/bin/clang --host-cxx /usr/bin/clang++ --use-system-cmake --with-ml-inliner-model='' --without-android --without-fuchsia  
 patch -u tools/rust/build_rust.py -i ../../buildScript/ungoogled-chromium-debian-main/patches/rust_build.patch
 tools/rust/build_rust.py --skip-test
+cp third_party/rust-toolchain/VERSION third_party/rust-toolchain/INSTALLED_VERSION
 echo "8----------------------------------------------------------------"
 pushd third_party/node
 ./update_node_binaries
