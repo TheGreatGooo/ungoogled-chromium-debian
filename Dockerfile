@@ -1,4 +1,4 @@
-FROM registry.k8s.kudikala.com/chrome-k8s
+FROM docker.io/jenkins/inbound-agent
 USER root
-RUN apt-get update; apt-get install -y  llvm-16 gcc xz-utils ninja-build clang clang-16 wget curl unzip libcups2-dev cmake lld openssl libssl-dev pkg-config
+RUN apt-get update; apt-get install -y  llvm-16 gcc xz-utils ninja-build clang clang-16 wget curl unzip libcups2-dev cmake lld openssl libssl-dev pkg-config libnss3 libnss3-dev libnss3-tools
 USER jenkins
