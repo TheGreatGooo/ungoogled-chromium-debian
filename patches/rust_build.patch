@@ -49,7 +49,7 @@
  
      # Require zlib compression.
      if sys.platform == 'win32':
-@@ -710,10 +714,10 @@
+@@ -710,9 +714,9 @@
      # TODO(crbug.com/1271215): OpenSSL is somehow already present on the Windows
      # builder, but we should change to using a package from 3pp when it is
      # available.
