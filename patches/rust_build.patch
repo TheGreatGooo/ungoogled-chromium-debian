@@ -49,20 +49,6 @@
  
      # Require zlib compression.
      if sys.platform == 'win32':
-@@ -710,10 +714,10 @@
-     # TODO(crbug.com/1271215): OpenSSL is somehow already present on the Windows
-     # builder, but we should change to using a package from 3pp when it is
-     # available.
--    if (sys.platform != 'win32' and not args.build_mac_arm
--            and not args.sync_for_gnrt):
-+    #if (sys.platform != 'win32' and not args.build_mac_arm
-+    #        and not args.sync_for_gnrt):
-         # Building cargo depends on OpenSSL.
--        AddOpenSSLToEnv(args.build_mac_arm)
-+    #    AddOpenSSLToEnv(args.build_mac_arm)
- 
-     xpy = XPy(zlib_path, libxml2_dirs, args.build_mac_arm, debian_sysroot,
-               args.verbose)
 @@ -784,7 +788,7 @@
       target_llvm_dir) = BuildLLVMLibraries(args.skip_llvm_build,
                                             args.build_mac_arm)
