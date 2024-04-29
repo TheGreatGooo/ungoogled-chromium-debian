@@ -40,15 +40,15 @@
        base_cmake_args += [ '-DLLVM_STATIC_LINK_CXX_STDLIB=ON' ]
  
 -  if sys.platform.startswith('linux'):
--    sysroot_amd64 = DownloadDebianSysroot('amd64')
--    sysroot_i386 = DownloadDebianSysroot('i386')
--    sysroot_arm = DownloadDebianSysroot('arm')
--    sysroot_arm64 = DownloadDebianSysroot('arm64')
+-    sysroot_amd64 = DownloadDebianSysroot('amd64', args.skip_checkout)
+-    sysroot_i386 = DownloadDebianSysroot('i386', args.skip_checkout)
+-    sysroot_arm = DownloadDebianSysroot('arm', args.skip_checkout)
+-    sysroot_arm64 = DownloadDebianSysroot('arm64', args.skip_checkout)
 +  #if sys.platform.startswith('linux'):
-+  #  sysroot_amd64 = DownloadDebianSysroot('amd64')
-+  #  sysroot_i386 = DownloadDebianSysroot('i386')
-+  #  sysroot_arm = DownloadDebianSysroot('arm')
-+  #  sysroot_arm64 = DownloadDebianSysroot('arm64')
++  #  sysroot_amd64 = DownloadDebianSysroot('amd64', args.skip_checkout)
++  #  sysroot_i386 = DownloadDebianSysroot('i386', args.skip_checkout)
++  #  sysroot_arm = DownloadDebianSysroot('arm', args.skip_checkout)
++  #  sysroot_arm64 = DownloadDebianSysroot('arm64', args.skip_checkout)
  
      # Add the sysroot to base_cmake_args.
 -    if platform.machine() == 'aarch64':
