@@ -1,4 +1,4 @@
-@@ -96,7 +96,7 @@
+@@ -94,7 +94,7 @@
  
  CLANG_SCRIPTS_DIR = os.path.join(CHROMIUM_DIR, 'tools', 'clang', 'scripts')
  
@@ -7,25 +7,23 @@
                  'github.com/rust-lang/rust')
  
  RUST_SRC_DIR = os.path.join(THIRD_PARTY_DIR, 'rust-src')
-@@ -235,12 +235,13 @@
- 
-     # Pull the stage0 JSON to find the package intended to be used to
-     # build this version of the Rust compiler.
-+    #https://raw.githubusercontent.com/rust-lang/rust/9784a14859aeffa2a3819566ccc77a28f9ae03be/src/stage0.json
+@@ -215,11 +215,11 @@
+     # Pull the stage0 to find the package intended to be used to build this
+     # version of the Rust compiler.
      STAGE0_JSON_URL = (
 -        'https://chromium.9oo91esource.qjz9zk/external/github.com/'
--        'rust-lang/rust/+/{GIT_HASH}/src/stage0.json?format=TEXT')
+-        'rust-lang/rust/+/{GIT_HASH}/src/stage0?format=TEXT')
 -    base64_text = urllib.request.urlopen(
 +        'https://raw.githubusercontent.com/'
-+        'rust-lang/rust/{GIT_HASH}/src/stage0.json')
++        'rust-lang/rust/{GIT_HASH}/src/stage0')
 +    text = urllib.request.urlopen(
          STAGE0_JSON_URL.format(GIT_HASH=rust_git_hash)).read().decode("utf-8")
--    stage0 = json.loads(base64.b64decode(base64_text))
-+    stage0 = json.loads(text)
+-    stage0 = base64.b64decode(base64_text).decode("utf-8")
++    stage0 = text.decode("utf-8")
+     lines = stage0.splitlines()
  
-     # The stage0 JSON contains the path to all tarballs it uses binaries from.
-     for k in stage0['checksums_sha256'].keys():
-@@ -555,6 +556,9 @@
+     # The stage0 file contains the path to all tarballs it uses binaries from.
+@@ -534,6 +534,9 @@
              '--with-ml-inliner-model=',
              # Not using this in Rust yet, see also crbug.com/1476464.
              '--without-zstd',
@@ -35,8 +33,8 @@
          ]
          if sys.platform.startswith('linux'):
              build_cmd.append('--without-android')
-@@ -689,11 +693,11 @@
-         return 1
+@@ -679,11 +682,11 @@
+     args, rest = parser.parse_known_args()
  
      debian_sysroot = None
 -    if sys.platform.startswith('linux') and not args.sync_for_gnrt:
@@ -49,8 +47,8 @@
  
      # Require zlib compression.
      if sys.platform == 'win32':
-@@ -710,9 +714,9 @@
-     # TODO(crbug.com/1271215): OpenSSL is somehow already present on the Windows
+@@ -700,9 +703,9 @@
+     # TODO(crbug.com/40205621): OpenSSL is somehow already present on the Windows
      # builder, but we should change to using a package from 3pp when it is
      # available.
 -    if (sys.platform != 'win32' and not args.sync_for_gnrt):
@@ -58,15 +56,15 @@
          # Building cargo depends on OpenSSL.
 -        AddOpenSSLToEnv()
 +    #    AddOpenSSLToEnv()
-
-     xpy = XPy(zlib_path, libxml2_dirs, args.build_mac_arm, debian_sysroot,
-               args.verbose)
-@@ -784,7 +788,7 @@
-      target_llvm_dir) = BuildLLVMLibraries(args.skip_llvm_build,
-                                            args.build_mac_arm)
+ 
+     xpy = XPy(zlib_path, libxml2_dirs, debian_sysroot, args.verbose)
+ 
+@@ -773,7 +776,7 @@
+ 
+     BuildLLVMLibraries(args.skip_llvm_build)
  
 -    AddCMakeToPath()
 +    #AddCMakeToPath()
  
      # Set up config.toml in Rust source tree.
-     xpy.configure(args.build_mac_arm, x86_64_llvm_config, aarch64_llvm_config)
+     xpy.configure()
