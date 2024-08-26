@@ -38,7 +38,6 @@ use_pulseaudio=true
 link_pulseaudio=true
 use_vaapi=true
 use_ozone=true
-use_goma=false
 enable_vr=false
 enable_iterator_debugging=false
 optimize_webui=true
