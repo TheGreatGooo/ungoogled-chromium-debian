@@ -19,3 +19,12 @@
  
      cargo_bin = os.path.join(RUST_TOOLCHAIN_OUT_DIR, 'bin', f'cargo{EXE}')
      rustc_bin = os.path.join(RUST_TOOLCHAIN_OUT_DIR, 'bin', f'rustc{EXE}')
+@@ -144,7 +143,7 @@
+     env['LD'] = linker
+     env['RUSTFLAGS'] += f' -Clinker={linker}'
+ 
+-    if sys.platform.startswith('linux'):
++    if sys.platform.startswith('none'):
+         # We use these flags to avoid linking with the system libstdc++.
+         sysroot = DownloadDebianSysroot('amd64')
+         sysroot_flag = f'--sysroot={sysroot}'
