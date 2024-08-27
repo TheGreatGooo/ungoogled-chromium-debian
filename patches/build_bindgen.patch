@@ -8,3 +8,14 @@
  
  BINDGEN_SRC_DIR = os.path.join(THIRD_PARTY_DIR, 'rust-toolchain-intermediate',
                                 'bindgen-src')
+@@ -86,8 +85,8 @@
+     parts).  That's a bit icky, but ultimately okay.
+     """
+     ncursesw_dir = None
+-    if sys.platform.startswith('linux'):
+-        ncursesw_dir = FetchNcurseswLibrary()
++#    if sys.platform.startswith('linux'):
++#        ncursesw_dir = FetchNcurseswLibrary()
+ 
+     cargo_bin = os.path.join(RUST_TOOLCHAIN_OUT_DIR, 'bin', f'cargo{EXE}')
+     rustc_bin = os.path.join(RUST_TOOLCHAIN_OUT_DIR, 'bin', f'rustc{EXE}')
