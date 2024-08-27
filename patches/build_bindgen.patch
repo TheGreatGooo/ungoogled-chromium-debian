@@ -1,0 +1,5 @@
+31,32c31
+< BINDGEN_GIT_REPO = ('https://chromium.9oo91esource.qjz9zk/external/' +
+<                     'github.com/rust-lang/rust-bindgen')
+---
+> BINDGEN_GIT_REPO = ('https://github.com/rust-lang/rust-bindgen')
