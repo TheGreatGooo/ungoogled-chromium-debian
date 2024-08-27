@@ -1,5 +1,10 @@
-31,32c31
-< BINDGEN_GIT_REPO = ('https://chromium.9oo91esource.qjz9zk/external/' +
-<                     'github.com/rust-lang/rust-bindgen')
----
-> BINDGEN_GIT_REPO = ('https://github.com/rust-lang/rust-bindgen')
+@@ -28,8 +28,7 @@
+ 
+ # The git hash to use.
+ BINDGEN_GIT_VERSION = 'f93d5dfa6d5d7409bea584f3eab38e1fc52b8360'
+-BINDGEN_GIT_REPO = ('https://chromium.9oo91esource.qjz9zk/external/' +
+-                    'github.com/rust-lang/rust-bindgen')
++BINDGEN_GIT_REPO = ('https://github.com/rust-lang/rust-bindgen')
+ 
+ BINDGEN_SRC_DIR = os.path.join(THIRD_PARTY_DIR, 'rust-toolchain-intermediate',
+                                'bindgen-src')
