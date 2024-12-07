@@ -48,9 +48,9 @@
      # Require zlib compression.
      if sys.platform == 'win32':
 @@ -700,9 +703,9 @@
-     # TODO(crbug.com/40205621): OpenSSL is somehow already present on the Windows
-     # builder, but we should change to using a package from 3pp when it is
-     # available.
+     # TODO(crbug.com/40205621): OpenSSL is somehow already present on the
+     # Windows builder, but we should change to using a package from 3pp when it
+     # is available.
 -    if (sys.platform != 'win32' and not args.sync_for_gnrt):
 +    #if (sys.platform != 'win32' and not args.sync_for_gnrt):
          # Building cargo depends on OpenSSL.
