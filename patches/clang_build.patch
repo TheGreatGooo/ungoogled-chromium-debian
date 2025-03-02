@@ -1,4 +1,4 @@
-@@ -46,7 +46,7 @@
+@@ -44,7 +44,7 @@
  THIRD_PARTY_DIR = os.path.join(CHROMIUM_DIR, 'third_party')
  LLVM_DIR = os.path.join(THIRD_PARTY_DIR, 'llvm')
  COMPILER_RT_DIR = os.path.join(LLVM_DIR, 'compiler-rt')
@@ -7,7 +7,7 @@
                  'github.com/llvm/llvm-project')
  LLVM_BOOTSTRAP_DIR = os.path.join(THIRD_PARTY_DIR, 'llvm-bootstrap')
  LLVM_BOOTSTRAP_INSTALL_DIR = os.path.join(THIRD_PARTY_DIR,
-@@ -322,7 +322,8 @@
+@@ -330,7 +330,8 @@
    if os.path.exists(dirs.src_dir):
      RmTree(dirs.src_dir)
    zip_name = LIBXML2_VERSION + '.tar.gz'
@@ -17,7 +17,7 @@
    os.mkdir(dirs.build_dir)
    os.chdir(dirs.build_dir)
  
-@@ -437,7 +438,7 @@
+@@ -441,7 +442,7 @@
    if os.path.exists(dirs.src_dir):
      RmTree(dirs.src_dir)
    zip_name = ZSTD_VERSION + '.tar.gz'
@@ -26,7 +26,7 @@
    os.mkdir(dirs.build_dir)
    os.chdir(dirs.build_dir)
  
-@@ -767,7 +767,7 @@
+@@ -766,7 +767,7 @@
      ninja_dir = os.path.join(THIRD_PARTY_DIR, 'ninja')
      os.environ['PATH'] = ninja_dir + os.pathsep + os.environ.get('PATH', '')
  
@@ -35,7 +35,7 @@
      sysroot_amd64 = DownloadDebianSysroot('amd64', args.skip_checkout)
      sysroot_i386 = DownloadDebianSysroot('i386', args.skip_checkout)
      sysroot_arm = DownloadDebianSysroot('arm', args.skip_checkout)
-@@ -808,7 +809,7 @@
+@@ -786,7 +787,7 @@
    cxxflags = []
    ldflags = []
  
@@ -44,7 +44,16 @@
    projects = 'clang;lld'
    if not args.no_tools:
      projects += ';clang-tools-extra'
-@@ -1175,20 +1176,20 @@
+@@ -870,7 +871,7 @@
+     if sys.platform.startswith('linux'):
+       base_cmake_args += [ '-DLLVM_STATIC_LINK_CXX_STDLIB=ON' ]
+ 
+-  if sys.platform.startswith('linux'):
++  if sys.platform.startswith('nolinux'):
+     # Add the sysroot to base_cmake_args.
+     if platform.machine() == 'aarch64':
+       base_cmake_args.append('-DCMAKE_SYSROOT=' + sysroot_arm64)
+@@ -1183,20 +1184,20 @@
    runtimes_triples_args = {}
  
    if sys.platform.startswith('linux'):
@@ -77,7 +86,7 @@
          ],
          "profile": True,
          "sanitizers": True,
-@@ -1200,28 +1201,28 @@
+@@ -1208,28 +1209,28 @@
      # results on
      # https://chromium-review.9oo91esource.qjz9zk/c/chromium/src/+/3702739/4
      # Maybe it should work for builtins too?
