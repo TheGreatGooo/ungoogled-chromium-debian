@@ -116,6 +116,6 @@
 +    #    "sanitizers":
 +    #    True,
 +    #}
-   elif sys.platform == 'win32':
-     sysroot = os.path.dirname(os.path.dirname(GetWinSDKDir()))
-     runtimes_triples_args['i386-pc-windows-msvc'] = {
+     runtimes_triples_args['riscv64-unknown-linux-gnu'] = {
+         "args": [
+             'CMAKE_SYSROOT=%s' % sysroot_riscv64,
