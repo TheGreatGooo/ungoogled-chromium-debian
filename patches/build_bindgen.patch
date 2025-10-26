@@ -1,13 +1,13 @@
-@@ -28,8 +28,7 @@
+@@ -44,8 +44,6 @@
+ NCURSESW_CIPD_LINUX_AMD_PATH = 'infra/3pp/static_libs/ncursesw/linux-amd64'
+ NCURSESW_CIPD_LINUX_AMD_VERSION = '6.0.chromium.1'
  
- # The git hash to use.
- BINDGEN_GIT_VERSION = 'f93d5dfa6d5d7409bea584f3eab38e1fc52b8360'
--BINDGEN_GIT_REPO = ('https://chromium.9oo91esource.qjz9zk/external/' +
--                    'github.com/rust-lang/rust-bindgen')
-+BINDGEN_GIT_REPO = ('https://github.com/rust-lang/rust-bindgen')
+-BINDGEN_GIT_REPO = ('https://github.com/rust-lang/rust-bindgen')
+-
+ EXE = '.exe' if sys.platform == 'win32' else ''
  
- BINDGEN_SRC_DIR = os.path.join(THIRD_PARTY_DIR, 'rust-toolchain-intermediate',
-                                'bindgen-src')
+ # TODO(crbug.com/440975178) Not all tests pass.
+
 @@ -86,8 +85,8 @@
      parts).  That's a bit icky, but ultimately okay.
      """
