@@ -1,9 +1,9 @@
-@@ -44,8 +44,6 @@
+@@ -44,6 +44,8 @@
  NCURSESW_CIPD_LINUX_AMD_PATH = 'infra/3pp/static_libs/ncursesw/linux-amd64'
  NCURSESW_CIPD_LINUX_AMD_VERSION = '6.0.chromium.1'
  
--BINDGEN_GIT_REPO = ('https://github.com/rust-lang/rust-bindgen')
--
++BINDGEN_GIT_REPO = ('https://github.com/rust-lang/rust-bindgen')
++
  EXE = '.exe' if sys.platform == 'win32' else ''
  
  # TODO(crbug.com/440975178) Not all tests pass.
