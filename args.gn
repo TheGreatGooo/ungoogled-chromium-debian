@@ -28,6 +28,7 @@ proprietary_codecs=true
 symbol_level=0
 use_kerberos=false
 use_sysroot=false
+sysroot="/"
 enable_rust=true
 blink_enable_generated_code_formatting=false
 is_cfi=false
