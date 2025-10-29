@@ -35,5 +35,6 @@ pushd third_party/node
 popd
 echo "9----------------------------------------------------------------"
 ./out/Default/gn gen out/Default --fail-on-unused-args
+sed -i "s|../../linux/debian_bullseye_amd64-sysroot/|/|g" build/modules/linux-x64/module.modulemap
 echo "10----------------------------------------------------------------"
 ninja -C out/Default chrome chromedriver chrome_sandbox
