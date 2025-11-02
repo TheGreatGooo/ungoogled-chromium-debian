@@ -9,3 +9,4 @@ cp -r ../build/src/out/Default/locales .
 cp ../build/src/out/Default/*.bin .
 cp ../build/src/out/Default/*.so .
 cp ../build/src/out/Default/*.pak .
+cp ../build/src/out/Default/*.dat .
