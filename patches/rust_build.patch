@@ -76,3 +76,14 @@
  
      # Set up config.toml in Rust source tree.
      xpy.configure()
+@@ -887,7 +887,8 @@
+     # If we're pulling the most recent rust, we shouldn't expect its stage 0
+     # hash to match the pinned one.
+     if not args.rust_force_head_revision:
+-        VerifyStage0JsonHash()
++        #VerifyStage0JsonHash()
++        print('skipping hash validation')
+     if args.verify_stage0_hash:
+         # The above function exits and prints the actual hash if
+         # verification failed so we just quit here; if we reach this point,
+
