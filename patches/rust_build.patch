@@ -23,6 +23,14 @@
      lines = stage0.splitlines()
  
      # The stage0 file contains the path to all tarballs it uses binaries from.
+@@ -255,8 +255,8 @@
+         if (filename + '.tar.gz') in l:
+             package_tgz = l.split('=')[0]
+ 
+-    DownloadAndUnpack(f'{server}/{package_tgz}', LLVM_BUILD_TOOLS_DIR)
+-    return os.path.join(LLVM_BUILD_TOOLS_DIR, filename)
++    #DownloadAndUnpack(f'{server}/{package_tgz}', LLVM_BUILD_TOOLS_DIR)
++    return os.path.join('/usr/bin/', filename)
 @@ -534,6 +534,9 @@
              '--with-ml-inliner-model=',
              # Not using this in Rust yet, see also crbug.com/1476464.
