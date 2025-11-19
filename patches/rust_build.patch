@@ -23,7 +23,28 @@
      lines = stage0.splitlines()
  
      # The stage0 file contains the path to all tarballs it uses binaries from.
-@@ -780,11 +780,11 @@
+@@ -255,8 +255,8 @@
+         if (filename + '.tar.gz') in l:
+             package_tgz = l.split('=')[0]
+ 
+-    DownloadAndUnpack(f'{server}/{package_tgz}', LLVM_BUILD_TOOLS_DIR)
+-    return os.path.join(LLVM_BUILD_TOOLS_DIR, filename)
++    #DownloadAndUnpack(f'{server}/{package_tgz}', LLVM_BUILD_TOOLS_DIR)
++    return os.path.join('/usr/bin/', '.')
+ 
+ 
+ def InstallBetaPackage(package_dir, install_dir):
+@@ -590,6 +590,9 @@
+             '--with-ml-inliner-model=',
+             # Not using this in Rust yet, see also crbug.com/1476464.
+             '--without-zstd',
++            '--host-cc=/usr/bin/clang',
++            '--host-cxx=/usr/bin/clang++',
++            '--use-system-cmake',
+         ]
+         if llvm_force_head_revision:
+             build_cmd.append('--llvm-force-head-revision')
+@@ -780,11 +783,11 @@
              return 1
  
      debian_sysroot = None
@@ -37,7 +58,7 @@
  
      # Require zlib compression.
      if sys.platform == 'win32':
-@@ -801,9 +801,9 @@
+@@ -801,9 +804,9 @@
      # TODO(crbug.com/40205621): OpenSSL is somehow already present on the
      # Windows builder, but we should change to using a package from 3pp when it
      # is available.
@@ -49,7 +70,7 @@
  
      xpy = XPy(zlib_path, libxml2_dirs, debian_sysroot, args.verbose)
  
-@@ -887,7 +887,7 @@
+@@ -887,7 +890,7 @@
      # If we're pulling the most recent rust, we shouldn't expect its stage 0
      # hash to match the pinned one.
      if not args.rust_force_head_revision:
@@ -58,7 +79,7 @@
      if args.verify_stage0_hash:
          # The above function exits and prints the actual hash if
          # verification failed so we just quit here; if we reach this point,
-@@ -896,7 +896,7 @@
+@@ -896,7 +899,7 @@
  
      BuildLLVMLibraries(args.skip_llvm_build, args.llvm_force_head_revision)
  
