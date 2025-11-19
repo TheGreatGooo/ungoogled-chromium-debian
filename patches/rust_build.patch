@@ -31,6 +31,8 @@
 -    return os.path.join(LLVM_BUILD_TOOLS_DIR, filename)
 +    #DownloadAndUnpack(f'{server}/{package_tgz}', LLVM_BUILD_TOOLS_DIR)
 +    return os.path.join('/usr/bin/', '.')
+
+
 @@ -590,6 +590,9 @@
              '--with-ml-inliner-model=',
              # Not using this in Rust yet, see also crbug.com/1476464.
