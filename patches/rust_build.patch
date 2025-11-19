@@ -31,7 +31,7 @@
 -    return os.path.join(LLVM_BUILD_TOOLS_DIR, filename)
 +    #DownloadAndUnpack(f'{server}/{package_tgz}', LLVM_BUILD_TOOLS_DIR)
 +    return os.path.join('/usr/bin/', '.')
-@@ -534,6 +534,9 @@
+@@ -590,6 +590,9 @@
              '--with-ml-inliner-model=',
              # Not using this in Rust yet, see also crbug.com/1476464.
              '--without-zstd',
@@ -39,8 +39,8 @@
 +            '--host-cxx=/usr/bin/clang++',
 +            '--use-system-cmake',
          ]
-         if sys.platform.startswith('linux'):
-             build_cmd.append('--without-android')
+         if llvm_force_head_revision:
+             build_cmd.append('--llvm-force-head-revision')
 @@ -679,11 +682,11 @@
      args, rest = parser.parse_known_args()
  
