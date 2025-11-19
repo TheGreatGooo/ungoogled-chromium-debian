@@ -1,4 +1,4 @@
-@@ -94,7 +94,7 @@
+@@ -99,7 +99,7 @@
  
  CLANG_SCRIPTS_DIR = os.path.join(CHROMIUM_DIR, 'tools', 'clang', 'scripts')
  
@@ -7,7 +7,7 @@
                  'github.com/rust-lang/rust')
  
  RUST_SRC_DIR = os.path.join(THIRD_PARTY_DIR, 'rust-src')
-@@ -215,11 +215,11 @@
+@@ -241,11 +241,11 @@
      # Pull the stage0 to find the package intended to be used to build this
      # version of the Rust compiler.
      STAGE0_JSON_URL = (
@@ -23,28 +23,8 @@
      lines = stage0.splitlines()
  
      # The stage0 file contains the path to all tarballs it uses binaries from.
-@@ -255,8 +255,8 @@
-         if (filename + '.tar.gz') in l:
-             package_tgz = l.split('=')[0]
- 
--    DownloadAndUnpack(f'{server}/{package_tgz}', LLVM_BUILD_TOOLS_DIR)
--    return os.path.join(LLVM_BUILD_TOOLS_DIR, filename)
-+    #DownloadAndUnpack(f'{server}/{package_tgz}', LLVM_BUILD_TOOLS_DIR)
-+    return os.path.join('/usr/bin/', '.')
-
-
-@@ -590,6 +590,9 @@
-             '--with-ml-inliner-model=',
-             # Not using this in Rust yet, see also crbug.com/1476464.
-             '--without-zstd',
-+            '--host-cc=/usr/bin/clang',
-+            '--host-cxx=/usr/bin/clang++',
-+            '--use-system-cmake',
-         ]
-         if llvm_force_head_revision:
-             build_cmd.append('--llvm-force-head-revision')
-@@ -679,11 +682,11 @@
-     args, rest = parser.parse_known_args()
+@@ -780,11 +780,11 @@
+             return 1
  
      debian_sysroot = None
 -    if sys.platform.startswith('linux') and not args.sync_for_gnrt:
@@ -57,7 +37,7 @@
  
      # Require zlib compression.
      if sys.platform == 'win32':
-@@ -700,9 +703,9 @@
+@@ -801,9 +801,9 @@
      # TODO(crbug.com/40205621): OpenSSL is somehow already present on the
      # Windows builder, but we should change to using a package from 3pp when it
      # is available.
@@ -69,22 +49,21 @@
  
      xpy = XPy(zlib_path, libxml2_dirs, debian_sysroot, args.verbose)
  
-@@ -773,7 +776,7 @@
+@@ -887,7 +887,7 @@
+     # If we're pulling the most recent rust, we shouldn't expect its stage 0
+     # hash to match the pinned one.
+     if not args.rust_force_head_revision:
+-        VerifyStage0JsonHash()
++        print("skipping") #VerifyStage0JsonHash()
+     if args.verify_stage0_hash:
+         # The above function exits and prints the actual hash if
+         # verification failed so we just quit here; if we reach this point,
+@@ -896,7 +896,7 @@
  
-     BuildLLVMLibraries(args.skip_llvm_build)
+     BuildLLVMLibraries(args.skip_llvm_build, args.llvm_force_head_revision)
  
 -    AddCMakeToPath()
 +    #AddCMakeToPath()
  
      # Set up config.toml in Rust source tree.
      xpy.configure()
-@@ -887,7 +887,8 @@
-     # If we're pulling the most recent rust, we shouldn't expect its stage 0
-     # hash to match the pinned one.
-     if not args.rust_force_head_revision:
--        VerifyStage0JsonHash()
-+        print('skipping hash validation') #VerifyStage0JsonHash()
-     if args.verify_stage0_hash:
-         # The above function exits and prints the actual hash if
-         # verification failed so we just quit here; if we reach this point,
-
