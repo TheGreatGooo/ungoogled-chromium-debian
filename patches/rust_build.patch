@@ -30,7 +30,7 @@
 -    DownloadAndUnpack(f'{server}/{package_tgz}', LLVM_BUILD_TOOLS_DIR)
 -    return os.path.join(LLVM_BUILD_TOOLS_DIR, filename)
 +    #DownloadAndUnpack(f'{server}/{package_tgz}', LLVM_BUILD_TOOLS_DIR)
-+    return os.path.join('/usr/bin/', '.')
++    return os.path.join('/', '.')
  
  
  def InstallBetaPackage(package_dir, install_dir):
