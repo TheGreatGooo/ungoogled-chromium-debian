@@ -8,6 +8,7 @@ echo "7----------------------------------------------------------------"
 pushd $WORKSPACE/build/src/build/linux/sysroot_scripts
 python3 -m venv .venv
 source .venv/bin/activate
+pip3 install requests
 ./generate_keyring.sh
 python3 sysroot_creator.py build amd64
 popd
