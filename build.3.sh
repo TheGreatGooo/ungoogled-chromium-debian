@@ -34,7 +34,7 @@ popd
 ARCH="armhf"
 python3 sysroot_creator.py build $ARCH
 LLVM_BUILD_TOOLS_DIR="$WORKSPACE/build/src/third_party/llvm-build-tools"
-DEBIAN_SYSROOT_EXPECTED="$LLVM_BUILD_TOOLS_DIR/debian_bullseye_${ARCH}_sysroot"
+DEBIAN_SYSROOT_EXPECTED="$LLVM_BUILD_TOOLS_DIR/debian_bullseye_arm_sysroot"
 mkdir -p $DEBIAN_SYSROOT_EXPECTED
 pushd $DEBIAN_SYSROOT_EXPECTED
 tar xvf "$WORKSPACE/build/src/out/sysroot-build/bullseye/debian_bullseye_${ARCH}_sysroot.tar.xz"
