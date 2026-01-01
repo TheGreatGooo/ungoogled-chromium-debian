@@ -31,7 +31,7 @@ tar xvf "$WORKSPACE/build/src/out/sysroot-build/bullseye/debian_bullseye_${ARCH}
 echo "b53933120bb08ffc38140a817e3f0f99782254a6bf9622271574fa004e8783a4" >> "$DEBIAN_SYSROOT_EXPECTED/stamp"
 popd
 
-ARCH="arm"
+ARCH="armhf"
 python3 sysroot_creator.py build $ARCH
 LLVM_BUILD_TOOLS_DIR="$WORKSPACE/build/src/third_party/llvm-build-tools"
 DEBIAN_SYSROOT_EXPECTED="$LLVM_BUILD_TOOLS_DIR/debian_bullseye_${ARCH}_sysroot"
