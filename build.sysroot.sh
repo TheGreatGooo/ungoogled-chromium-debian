@@ -1,6 +1,6 @@
 mkdir -p build/src
 pushd build/src
-#wget https://chromium.googlesource.com/chromium/src/+archive/a98fe8c2f2e7c84dc95879fbc5a11f5de7662353.tar.gz
+wget https://chromium.googlesource.com/chromium/src/+archive/a98fe8c2f2e7c84dc95879fbc5a11f5de7662353.tar.gz
 tar xvzf a98fe8c2f2e7c84dc95879fbc5a11f5de7662353.tar.gz
 
 pushd $WORKSPACE/build/src/build/linux/sysroot_scripts
