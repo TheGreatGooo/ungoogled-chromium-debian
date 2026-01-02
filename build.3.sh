@@ -62,6 +62,7 @@ patch -u tools/clang/scripts/build.py -i ../../buildScript/ungoogled-chromium-de
 patch -u tools/rust/build_rust.py -i ../../buildScript/ungoogled-chromium-debian-main/patches/rust_build.patch
 patch -u tools/rust/build_bindgen.py -i ../../buildScript/ungoogled-chromium-debian-main/patches/build_bindgen.patch
 tools/clang/scripts/build.py --host-cc /usr/bin/clang --host-cxx /usr/bin/clang++ --use-system-cmake --with-ml-inliner-model='' --without-android --without-fuchsia  
+sed -i "s|RUST_REVISION = 'f8297e351a40c1439a467bbbb6879088047f50b3'|RUST_REVISION = '1ebf69d1b1a94e99c01680514571c41d0b864c15'|g" "$WORKSPACE/build/src/tools/rust/update_rust.py"
 tools/rust/build_rust.py --skip-test
 tools/rust/build_bindgen.py
 cp third_party/rust-toolchain/VERSION third_party/rust-toolchain/INSTALLED_VERSION
