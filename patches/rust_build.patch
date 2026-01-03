@@ -23,17 +23,6 @@
      lines = stage0.splitlines()
  
      # The stage0 file contains the path to all tarballs it uses binaries from.
-@@ -255,8 +255,8 @@
-         if (filename + '.tar.gz') in l:
-             package_tgz = l.split('=')[0]
- 
--    DownloadAndUnpack(f'{server}/{package_tgz}', LLVM_BUILD_TOOLS_DIR)
--    return os.path.join(LLVM_BUILD_TOOLS_DIR, filename)
-+    #DownloadAndUnpack(f'{server}/{package_tgz}', LLVM_BUILD_TOOLS_DIR)
-+    return os.path.join('/', '.')
- 
- 
- def InstallBetaPackage(package_dir, install_dir):
 @@ -590,6 +590,9 @@
              '--with-ml-inliner-model=',
              # Not using this in Rust yet, see also crbug.com/1476464.
@@ -44,20 +33,6 @@
          ]
          if llvm_force_head_revision:
              build_cmd.append('--llvm-force-head-revision')
-@@ -780,11 +783,11 @@
-             return 1
- 
-     debian_sysroot = None
--    if sys.platform.startswith('linux') and not args.sync_for_gnrt:
-+    #if sys.platform.startswith('linux') and not args.sync_for_gnrt:
-         # Fetch sysroot we build rustc against. This ensures a minimum supported
-         # host (not Chromium target). Since the rustc linux package is for
-         # x86_64 only, that is the sole needed sysroot.
--        debian_sysroot = DownloadDebianSysroot('amd64', args.skip_checkout)
-+    #    debian_sysroot = DownloadDebianSysroot('amd64', args.skip_checkout)
- 
-     # Require zlib compression.
-     if sys.platform == 'win32':
 @@ -801,9 +804,9 @@
      # TODO(crbug.com/40205621): OpenSSL is somehow already present on the
      # Windows builder, but we should change to using a package from 3pp when it
