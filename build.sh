@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -ex
 build.1.sh
 build.2.sh
 build.3.sh

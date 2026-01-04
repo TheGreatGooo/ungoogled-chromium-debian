@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -ex
 git submodule update --init --recursive
 rm -rf build/src build/domsubcache.tar.gz 
 echo "1----------------------------------------------------------------"

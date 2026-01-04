@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -ex
 pushd build/src
 patch -u tools/clang/scripts/build.py -i ../../buildScript/ungoogled-chromium-debian-main/patches/clang_build.patch 
 sed -i "s|CLANG_REVISION = 'llvmorg-22-init-8940-g4d4cb757'|CLANG_REVISION = '6d31e7e4f29e89213a55e9f5fdcd176396604637'|g" "$WORKSPACE/build/src/tools/clang/scripts/update.py"
