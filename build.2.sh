@@ -64,15 +64,3 @@ popd
 
 
 popd
-
-cd $WORKSPACE
-pushd build/src
-patch -u tools/rust/build_rust.py -i ../../buildScript/ungoogled-chromium-debian-main/patches/rust_build.patch
-patch -u tools/rust/build_bindgen.py -i ../../buildScript/ungoogled-chromium-debian-main/patches/build_bindgen.patch
-patch -u tools/clang/scripts/build.py -i ../../buildScript/ungoogled-chromium-debian-main/patches/clang_build.patch 
-
-sed -i "s|CLANG_REVISION = 'llvmorg-22-init-8940-g4d4cb757'|CLANG_REVISION = '6d31e7e4f29e89213a55e9f5fdcd176396604637'|g" "$WORKSPACE/build/src/tools/clang/scripts/update.py"
-sed -i 's|clang_version = "22"|clang_version = "6d31e7e4f29e89213a55e9f5fdcd176396604637-84"|g' "$WORKSPACE/build/src/build/toolchain/toolchain.gni"
-sed -i "s|llvmorg-$clang_version-*|$clang_version|g" "$WORKSPACE/build/src/build/config/compiler/BUILD.gn"
-sed -i "s|GitCherryPick(LLVM_DIR|#GitCherryPick(LLVM_DIR|g" "$WORKSPACE/build/src/tools/clang/scripts/build.py"
-sed -i "s|RUST_REVISION = 'f8297e351a40c1439a467bbbb6879088047f50b3'|RUST_REVISION = '634251cba8edb4ebcd01e330c7241e14d76322a1'|g" "$WORKSPACE/build/src/tools/rust/update_rust.py"
