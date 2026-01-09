@@ -33,6 +33,15 @@
          ]
          if llvm_force_head_revision:
              build_cmd.append('--llvm-force-head-revision')
+@@ -663,6 +666,8 @@
+     GitCherryPick(RUST_SRC_DIR, 'f9c040b7318f86e54fc57119ba5e0664df117600',
+                   'https://github.com/rust-lang/rust.git')
+ 
++    GitCherryPick(RUST_SRC_DIR, 'bc7986ec791ded521f3f75ab82645b6be0c39508',
++                  'https://github.com/rust-lang/rust.git')
+     print('Finished applying cherry-picks.')
+ 
+ 
 @@ -801,9 +804,9 @@
      # TODO(crbug.com/40205621): OpenSSL is somehow already present on the
      # Windows builder, but we should change to using a package from 3pp when it
