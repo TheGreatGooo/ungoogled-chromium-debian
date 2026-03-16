@@ -24,7 +24,7 @@
  
      # The stage0 file contains the path to all tarballs it uses binaries from.
 @@ -590,6 +590,9 @@
-             '--with-ml-inliner-model=',
+             '--pic',
              # Not using this in Rust yet, see also crbug.com/1476464.
              '--without-zstd',
 +            '--host-cc=/usr/bin/clang',
