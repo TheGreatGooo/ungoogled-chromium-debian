@@ -23,16 +23,16 @@
      lines = stage0.splitlines()
  
      # The stage0 file contains the path to all tarballs it uses binaries from.
-@@ -590,6 +590,9 @@
-             '--pic',
-             # Not using this in Rust yet, see also crbug.com/1476464.
-             '--without-zstd',
-+            '--host-cc=/usr/bin/clang',
-+            '--host-cxx=/usr/bin/clang++',
-+            '--use-system-cmake',
-         ]
-         if llvm_force_head_revision:
-             build_cmd.append('--llvm-force-head-revision')
+@@ -591,6 +591,9 @@
+         '--with-ml-inliner-model=',
+         # Not using this in Rust yet, see also crbug.com/1476464.
+         '--without-zstd',
++        '--host-cc=/usr/bin/clang',
++        '--host-cxx=/usr/bin/clang++',
++        '--use-system-cmake',
+     ]
+     if llvm_force_head_revision:
+         build_cmd.append('--llvm-force-head-revision')
 @@ -663,6 +666,8 @@
      GitCherryPick(RUST_SRC_DIR, 'f9c040b7318f86e54fc57119ba5e0664df117600',
                    'https://github.com/rust-lang/rust.git')
